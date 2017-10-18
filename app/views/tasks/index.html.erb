@@ -8,17 +8,18 @@
   <thead>
     <tr>
       <th>Name</th>
-      <th>Done</th>
-      <th colspan="3"></th>
     </tr>
   </thead>
 
   <tbody>
-    <% @tasks.each do |task| %>
+    <% @incompleted_tasks.each do |task| %>
       <tr>
         <td><%= task.name %></td>
-        <td><%= task.done %></td>
-        <td><%= link_to 'Destroy', task, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td>
+        <%= form_with(model: task, local: true) do |form| %>
+          <%= form.submit('done') %>
+        <% end %>
+        </td>
       </tr>
     <% end %>
   </tbody>
@@ -31,17 +32,13 @@
   <thead>
     <tr>
       <th>Name</th>
-      <th>Done</th>
-      <th colspan="3"></th>
     </tr>
   </thead>
 
   <tbody>
-    <% @tasks.each do |task| %>
+    <% @completed_tasks.each do |task| %>
       <tr>
         <td><%= task.name %></td>
-        <td><%= task.done %></td>
-        <td><%= link_to 'Destroy', task, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>
   </tbody>

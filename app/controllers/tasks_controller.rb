@@ -5,6 +5,8 @@ class TasksController < ApplicationController
   # GET /tasks.json
   def index
     @tasks = Task.all
+    @incompleted_tasks = Task.where(done: false)
+    @completed_tasks = Task.where(done: true)
   end
 
   # GET /tasks/1
@@ -59,6 +61,9 @@ class TasksController < ApplicationController
       format.html { redirect_to tasks_url, notice: 'Task was successfully destroyed.' }
       format.json { head :no_content }
     end
+  end
+  
+  def done
   end
 
   private
